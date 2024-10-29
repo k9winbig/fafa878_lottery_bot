@@ -72,12 +72,12 @@ positions = {
 API_URL = "https://4dresult88.com/fetchall?_="
 
 
-def fetch_lottery_results():
+def fetch_lottery_results(api_url):
     # Get current Unix timestamp
     current_timestamp = int(time.time())  # Get the current timestamp (seconds since epoch)
 
     # Construct the full API URL with the timestamp
-    api_url_with_timestamp = API_URL.format(current_timestamp)
+    api_url_with_timestamp = f"{api_url}{current_timestamp}"
 
     # Make the API request
     response = requests.get(api_url_with_timestamp)
