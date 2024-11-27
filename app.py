@@ -62,6 +62,21 @@ def send_results_to_group():
         # Optionally notify if dates don't match
         pass
 
+# Manually fetch and send results on command
+@bot.message_handler(commands=['sendresult'])
+def manual_fetch_results(message):
+    results = fetch_data()
+    if not results:
+        bot.reply_to(message, "Failed to fetch lottery data.")
+        return
+
+    # Call the image processing function
+    image_path = create_result_image(results)  # Pass relevant section data to the function
+
+    # Send the image to the user or group
+    with open(image_path, 'rb') as image_file:
+        bot.send_photo(chat_id=GROUP_CHAT_ID, photo=image_file)
+
 def job():
     send_results_to_group()
 
