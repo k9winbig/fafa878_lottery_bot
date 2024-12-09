@@ -58,7 +58,7 @@ def send_results_to_group():
         image_path = create_result_image(results)
         with open(image_path, 'rb') as image_file:
             # Send image with caption
-            bot.send_photo(chat_id=GROUP_CHAT_ID, photo=image_file, caption=IMAGE_CAPTION)
+            bot.send_photo(chat_id=GROUP_CHAT_ID, photo=image_file, caption=IMAGE_CAPTION, parse_mode="MarkdownV2")
 
 @bot.message_handler(commands=['sendresult'])
 def manual_fetch_results(message):
@@ -70,7 +70,7 @@ def manual_fetch_results(message):
     image_path = create_result_image(results)
     with open(image_path, 'rb') as image_file:
         # Send image with caption
-        bot.send_photo(chat_id=GROUP_CHAT_ID, photo=image_file, caption=IMAGE_CAPTION)
+        bot.send_photo(chat_id=GROUP_CHAT_ID, photo=image_file, caption=IMAGE_CAPTION, parse_mode="MarkdownV2")
 
 def job():
     send_results_to_group()
